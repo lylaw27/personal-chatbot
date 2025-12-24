@@ -31,7 +31,7 @@ export const chatModels: ChatModel[] = [
   // OpenAI
   {
     id: "openai/gpt-5-mini",
-    name: "GPT-5 Mini",
+    name: "ChatGPT-5 Mini",
     provider: "openai",
     description: "Fast and cost-effective for simple tasks",
   },
@@ -44,19 +44,19 @@ export const chatModels: ChatModel[] = [
   // Google
   {
     id: "google/gemini-3-flash",
-    name: "Gemini 3 Flash",
+    name: "Google Gemini 3 Flash",
     provider: "google",
     description: "fast and affordable",
   },
   {
     id: "google/gemini-3-pro-preview",
-    name: "Gemini 3 Pro",
+    name: "Google Gemini 3 Pro",
     provider: "google",
     description: "Most capable Google model",
   },
   {
     id: "alibaba/qwen3-vl-thinking",
-    name: "Qwen3-VL Thinking",
+    name: "Alibaba AI Qwen 3 VL Thinking",
     provider: "alibaba",
     description: "Advanced multimodal reasoning capabilities",
   }
