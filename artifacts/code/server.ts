@@ -1,8 +1,10 @@
 import { streamObject } from "ai";
 import { z } from "zod";
-import { codePrompt, updateDocumentPrompt } from "@/lib/ai/prompts";
 import { getArtifactModel } from "@/lib/ai/providers";
 import { createDocumentHandler } from "@/lib/artifacts/server";
+
+// Simple code prompt since artifacts are disabled
+const codePrompt = "Generate clean, well-commented code based on the request.";
 
 export const codeDocumentHandler = createDocumentHandler<"code">({
   kind: "code",
@@ -44,7 +46,7 @@ export const codeDocumentHandler = createDocumentHandler<"code">({
 
     const { fullStream } = streamObject({
       model: getArtifactModel(),
-      system: updateDocumentPrompt(document.content, "code"),
+      system: `Update the following code based on the request:\n\n${document.content}`,
       prompt: description,
       schema: z.object({
         code: z.string(),

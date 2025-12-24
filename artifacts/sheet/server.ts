@@ -1,8 +1,10 @@
 import { streamObject } from "ai";
 import { z } from "zod";
-import { sheetPrompt, updateDocumentPrompt } from "@/lib/ai/prompts";
 import { getArtifactModel } from "@/lib/ai/providers";
 import { createDocumentHandler } from "@/lib/artifacts/server";
+
+// Simple sheet prompt since artifacts are disabled
+const sheetPrompt = "Create a spreadsheet in CSV format based on the request.";
 
 export const sheetDocumentHandler = createDocumentHandler<"sheet">({
   kind: "sheet",
@@ -50,7 +52,7 @@ export const sheetDocumentHandler = createDocumentHandler<"sheet">({
 
     const { fullStream } = streamObject({
       model: getArtifactModel(),
-      system: updateDocumentPrompt(document.content, "sheet"),
+      system: `Update the following spreadsheet based on the request:\n\n${document.content}`,
       prompt: description,
       schema: z.object({
         csv: z.string(),
