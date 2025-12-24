@@ -54,6 +54,12 @@ export const chatModels: ChatModel[] = [
     provider: "google",
     description: "Most capable Google model",
   },
+  {
+    id: "alibaba/qwen3-vl-thinking",
+    name: "Qwen3-VL Thinking",
+    provider: "alibaba",
+    description: "Advanced multimodal reasoning capabilities",
+  }
   // xAI
   // {
   //   id: "xai/grok-4.1-fast-non-reasoning",
