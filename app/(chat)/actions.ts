@@ -1,5 +1,6 @@
 "use server";
 
+import { google } from '@ai-sdk/google';
 import { generateText, type UIMessage } from "ai";
 import { cookies } from "next/headers";
 import type { VisibilityType } from "@/components/visibility-selector";
@@ -22,10 +23,21 @@ export async function generateTitleFromUserMessage({
 }: {
   message: UIMessage;
 }) {
-  const { text: title } = await generateText({
+  const { text: title  } = await generateText({
     model: getTitleModel(),
     system: titlePrompt,
     prompt: getTextFromMessage(message),
+    tools: {
+      google_search: google.tools.googleSearch({}),
+    },
+    providerOptions: {
+      google: {
+        thinking: {
+          includeThoughts: true,
+          thinkingLevel: 'high',
+        },
+      }
+    }
   });
 
   return title;
