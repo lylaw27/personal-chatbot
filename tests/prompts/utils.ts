@@ -1,4 +1,3 @@
-import type { LanguageModelV3StreamPart, LanguageModelV3FinishReason } from "@ai-sdk/provider";
 
 const mockUsage = {
   inputTokens: { total: 10, noCache: 10, cacheRead: 0, cacheWrite: 0 },
@@ -8,8 +7,8 @@ const mockUsage = {
 export function getResponseChunksByPrompt(
   _prompt: unknown,
   includeReasoning = false
-): LanguageModelV3StreamPart[] {
-  const chunks: LanguageModelV3StreamPart[] = [];
+){
+  const chunks = [];
 
   if (includeReasoning) {
     chunks.push(
@@ -23,7 +22,7 @@ export function getResponseChunksByPrompt(
     { type: "text-start", id: "t1" },
     { type: "text-delta", id: "t1", delta: "Hello, world!" },
     { type: "text-end", id: "t1" },
-    { type: "finish", finishReason: "stop" as LanguageModelV3FinishReason, usage: mockUsage }
+    { type: "finish", finishReason: "stop", usage: mockUsage }
   );
 
   return chunks;
